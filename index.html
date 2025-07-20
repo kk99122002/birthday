@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To My Dearest Love ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(-45deg, #ff9a9e, #fecfef, #fecfef, #ff9a9e);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            overflow-x: hidden;
+            cursor: default;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .story-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .story-text {
+            font-size: 2.5rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin: 20px 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+            max-width: 800px;
+            line-height: 1.4;
+        }
+
+        .story-text.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .story-text.large {
+            font-size: 3.5rem;
+            font-weight: bold;
+        }
+
+        .story-text.medium {
+            font-size: 2rem;
+        }
+
+        .story-text.small {
+            font-size: 1.8rem;
+        }
+
+        .story-text.highlight {
+            background: linear-gradient(45deg, #ff6b9d, #c471ed, #12c2e9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+        }
+
+        .continue-btn {
+            background: linear-gradient(45deg, #ff6b9d, #c471ed);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-top: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .continue-btn.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .continue-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .main-content {
+            display: none;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 2s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            animation: fadeInUp 2s ease-out 0.5s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            background: rgba(255,255,255,0.95);
+            margin: 30px 0;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            animation: slideInUp 1s ease-out;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            color: #e91e63;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #e91e63, #ff6b9d);
+            display: block;
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .love-message {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #555;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .photo-placeholder {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .photo-placeholder:hover {
+            transform: scale(1.05);
+        }
+
+        .memory-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #e91e63;
+            transition: transform 0.3s ease;
+        }
+
+        .memory-card:hover {
+            transform: translateX(10px);
+        }
+
+        .memory-date {
+            color: #e91e63;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .memory-text {
+            color: #666;
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+
+        .countdown {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .countdown-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .time-unit {
+            background: rgba(255,255,255,0.2);
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .time-number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .time-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 182, 193, 0.7);
+            font-size: 20px;
+            animation: floatHeart 6s linear infinite;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .special-message {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .special-message::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .replay-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, #ff6b9d, #c471ed);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .replay-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .story-text {
+                font-size: 2rem;
+            }
+            
+            .story-text.large {
+                font-size: 2.5rem;
+            }
+            
+            .story-text.medium {
+                font-size: 1.8rem;
+            }
+            
+            .story-text.small {
+                font-size: 1.5rem;
+            }
+            
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 25px;
+                margin: 20px 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .countdown-timer {
+                gap: 10px;
+            }
+            
+            .time-unit {
+                padding: 10px 15px;
+                min-width: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    
+    <!-- Story Mode -->
+    <div class="story-container" id="story-mode">
+        <div class="story-text large" id="story-1">Hey my sweetie 💕</div>
+        <div class="story-text medium" id="story-2">I wanted to create something special for you...</div>
+        <div class="story-text" id="story-3">I was going to send you a simple birthday message</div>
+        <div class="story-text small" id="story-4">Just saying "Happy Birthday" like everyone else</div>
+        <div class="story-text" id="story-5">But then I stopped...</div>
+        <div class="story-text" id="story-6">I realized I wanted to do something extraordinary</div>
+        <div class="story-text highlight large" id="story-7">Because you are extraordinary ✨</div>
+        <div class="story-text" id="story-8">You're the most beautiful soul I've ever known</div>
+        <div class="story-text" id="story-9">The kindest heart, the brightest smile</div>
+        <div class="story-text large highlight" id="story-10">So...</div>
+        <div class="story-text large" id="story-11">I created this just for you 🎁</div>
+        
+        <button class="continue-btn" id="continue-btn" onclick="showMainContent()">
+            Enter Your Special World ✨
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="main-content">
+        <header class="header">
+            <h1 class="title">To My Dearest Love Anna 💖</h1>
+            <p class="subtitle">For the most wonderful person on this special day</p>
+        </header>
+
+        <div class="container">
+            <section class="section">
+                <h2 class="section-title">Happy Birthday Beautiful 🎂</h2>
+                <div class="love-message">
+                    My love, another year has graced us—and every single day, you've been the brightest part of mine. Your laughter is the echo of joy I never want to stop hearing, and your smile could outshine the sun on its proudest day.
+You’ve filled my life with more love than I ever thought possible.
+On this special day, I wish you a year as radiant as your spirit, as kind as your heart, and as beautiful as your soul.
+May every dream you cherish bloom like spring after the longest winter.
+Happy birthday, my heart, my light, my forever. 
+"For in thine eyes, I see my world."
+💕
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Our Love Story 💕</h2>
+                <div class="countdown">
+                    <div class="countdown-title">We've been together for</div>
+                    <div class="countdown-timer" id="anniversary-timer">
+                        <div class="time-unit">
+                            <span class="time-number" id="years">0</span>
+                            <span class="time-label">Years</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-number" id="months">0</span>
+                            <span class="time-label">Months</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-number" id="days">0</span>
+                            <span class="time-label">Days</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-number" id="hours">0</span>
+                            <span class="time-label">Hours</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Our Beautiful Memories 📸</h2>
+                <div class="photo-grid">
+                    <div class="photo-placeholder" onclick="uploadPhoto(this)">
+                        Click to add our photos 📷
+                    </div>
+                    <div class="photo-placeholder" onclick="uploadPhoto(this)">
+                        Click to add our photos 📷
+                    </div>
+                    <div class="photo-placeholder" onclick="uploadPhoto(this)">
+                        Click to add our photos 📷
+                    </div>
+                    <div class="photo-placeholder" onclick="uploadPhoto(this)">
+                        Click to add our photos 📷
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Precious Moments ⏰</h2>
+                <div class="memory-card">
+                    <div class="memory-date">The First Time We Met</div>
+                    <div class="memory-text">We first met in middle school, and I didn’t realize I had slowly fallen for you until you were no longer sitting by my side....</div>
+                </div>
+                <div class="memory-card">
+                    <div class="memory-date">Our First Date</div>
+                    <div class="memory-text">Our very first 'official' date was on that sunlit middle school basketball court. The day was warm and bright, but your presence made my heart feel even warmer....</div>
+                </div>
+                <div class="memory-card">
+                    <div class="memory-date">When I First Said "I Love You"</div>
+                    <div class="memory-text">I said "I love you" through a screen—just three words, but they burned with everything I felt. The moment I hit send, my heart was on fire. I shut the screen, too shy to watch your reply, but in that instant, you had all of me.....</div>
+                </div>
+            </section>
+
+            <section class="special-message">
+                <h2 style="margin-bottom: 20px;">From My Heart to Yours 💌</h2>
+                <p style="font-size: 1.3rem; line-height: 1.8;">
+                    Thank you for walking into my life and filling it with colors I never knew existed. With you, every ordinary day turns into something extraordinary. You’ve taught me what it means to be truly loved, to feel at home in someone’s presence, and to dream without fear—because you believe in me, even when I don’t. No matter where life leads us, I want to take every step with your hand in mine, your heart beside mine. You are not just part of my story—you are the best chapter.
+“I do love thee with a love that shall outlive time, and echo in the silence where words dare not tread.”
+I love you more than words will ever know.
+
+ ❤️
+                </p>
+            </section>
+        </div>
+
+        <footer class="footer">
+            <p>Forever and Always Yours ❤️ With All My Love</p>
+        </footer>
+    </div>
+
+    <!-- Replay Button -->
+    <button class="replay-btn" id="replay-btn" onclick="replayStory()" style="display: none;" title="Replay the story">
+        🔄
+    </button>
+
+    <script>
+        let currentStory = 0;
+        const storyElements = [
+            'story-1', 'story-2', 'story-3', 'story-4', 
+            'story-5', 'story-6', 'story-7', 'story-8', 
+            'story-9', 'story-10', 'story-11'
+        ];
+
+        // Floating hearts animation
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            document.getElementById('hearts').appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        // Create hearts periodically
+        setInterval(createHeart, 1000);
+
+        // Story animation
+        function showNextStory() {
+            if (currentStory < storyElements.length) {
+                document.getElementById(storyElements[currentStory]).classList.add('show');
+                currentStory++;
+                
+                if (currentStory < storyElements.length) {
+                    setTimeout(showNextStory, 2000);
+                } else {
+                    setTimeout(() => {
+                        document.getElementById('continue-btn').classList.add('show');
+                    }, 1000);
+                }
+            }
+        }
+
+        // Show main content
+        function showMainContent() {
+            document.getElementById('story-mode').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            document.getElementById('replay-btn').style.display = 'block';
+            updateAnniversary();
+        }
+
+        // Replay story
+        function replayStory() {
+            // Reset story state
+            currentStory = 0;
+            storyElements.forEach(id => {
+                document.getElementById(id).classList.remove('show');
+            });
+            document.getElementById('continue-btn').classList.remove('show');
+            
+            // Show story mode
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('story-mode').style.display = 'flex';
+            document.getElementById('replay-btn').style.display = 'none';
+            
+            // Restart story animation
+            setTimeout(showNextStory, 500);
+        }
+
+        // Anniversary countdown (Please change to your actual anniversary date)
+        function updateAnniversary() {
+            // IMPORTANT: Change this date to your actual anniversary date
+            const anniversaryDate = new Date('2023-06-14T00:00:00');
+            const now = new Date();
+            const diff = now - anniversaryDate;
+
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+            const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+            document.getElementById('years').textContent = years;
+            document.getElementById('months').textContent = months;
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+        }
+
+        // Photo upload functionality
+        function uploadPhoto(element) {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        element.style.backgroundImage = `url(${e.target.result})`;
+                        element.style.backgroundSize = 'cover';
+                        element.style.backgroundPosition = 'center';
+                        element.innerHTML = '';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            input.click();
+        }
+
+        // Start story animation when page loads
+        window.addEventListener('load', function() {
+            setTimeout(showNextStory, 1000);
+        });
+
+        // Click anywhere to continue story (in story mode)
+        document.addEventListener('click', function(e) {
+            if (document.getElementById('story-mode').style.display !== 'none' && 
+                !e.target.classList.contains('continue-btn') && 
+                currentStory >= storyElements.length &&
+                document.getElementById('continue-btn').classList.contains('show')) {
+                showMainContent();
+            }
+        });
+    </script>
+</body>
+</html>
